@@ -1,19 +1,11 @@
 #include <iostream>
-#include <string>
-class Student
-{
-private:
-	std::string Name;
-	float Mark;
-public:
-	std::string get_name();
-	void set_name(std::string name);
-};
+#include "Header.h"
 
 int main()
 {
-	Student s1;
-	s1.get_name();
-
+	dosomething();
+	std::cout << &x << std::endl;
+	std::cout << x << std::endl;
+	system("pause");
 	return 0;
 }

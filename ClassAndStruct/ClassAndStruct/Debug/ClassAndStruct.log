@@ -1,3 +1,8 @@
-﻿  main.cpp
-  ClassAndStruct.vcxproj -> D:\FPTSoftware\cpp_language\ClassAndStruct\Debug\ClassAndStruct.exe
-  ClassAndStruct.vcxproj -> D:\FPTSoftware\cpp_language\ClassAndStruct\Debug\ClassAndStruct.pdb (Partial PDB)
+﻿  Source.cpp
+d:\fptsoftware\cpp_language\classandstruct\classandstruct\header.h(3): error C2734: 'x': 'const' object must be initialized if not 'extern'
+d:\fptsoftware\cpp_language\classandstruct\classandstruct\source.cpp(5): error C3892: 'x': you cannot assign to a variable that is const
+  Generating Code...
+  Compiling...
+  main.cpp
+d:\fptsoftware\cpp_language\classandstruct\classandstruct\header.h(3): error C2734: 'x': 'const' object must be initialized if not 'extern'
+  Generating Code...
