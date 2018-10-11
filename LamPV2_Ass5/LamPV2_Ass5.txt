@@ -1,0 +1,83 @@
+1. Below example tries to swap value of evenNumber and oddNumber but it does not works.
+Please correct it by trying passing reference of pointer to swap function.
+
+void swap(int &evenNumber, int &oddNumber)
+{
+    int temp = evenNumber;
+    evenNumber = oddNumber;
+    oddNumber = temp;
+}
+
+
+int main(int argc, char *argv[])
+{
+    int evenNumber = 2;
+    int oddNumber   = 3;
+
+    cout << "evenNumber: " << evenNumber << " ,oddNumber : " << oddNumber << endl;
+    swap(evenNumber, oddNumber);
+    cout << "evenNumber: " << evenNumber << " ,oddNumber : " << oddNumber<< endl;
+
+    return 0;
+}
+
+Result:
+evenNumber: 2 ,oddNumber : 3
+evenNumber: 2 ,oddNumber : 3
+
+
+2. Write a C++ program that compare length of 2 input strings and return the string that has longer length.
+User will input 2 strings step by step, then program will output the string that is longer.
+#include <iostream>
+#include <string>
+
+std::string longerString(std::string str1, std::string str2)
+{
+	if (str1.length() > str2.length())
+	{
+		return str1;
+	}
+	return str2;
+}
+
+int main()
+{
+	std::string str1, str2;
+	std::cout << "\nEnter str1: ";
+	std::getline(std::cin, str1);
+
+	std::cout << "\nEnter str2: ";
+	std::getline(std::cin, str2);
+	std::cout << "\nLonger string: " longerString(str1, str2);
+
+	system("pause");
+	return 0;
+}
+ 
+3. What is the output when trying to print the value of v. (Dap an C)
+
+	void incr1(int& x){ // increase 1
+    	x++;
+	}
+	int incr2(int x){   // increase 1
+		return x++;
+	}
+    int v = 2;
+    incr1(v);   
+    v = incr2(v);
+A. 2
+B. 3
+C. 4 
+D. 5
+
+4. Which sentence below is incorrect (Dap an D, )
+A. Use reference when needed, and pointer when you have to.
+B. If you want to change the object passed, call by reference and use a pointer.
+C. Reference must refer to an object, not a dereferenced null pointer.
+D. Pointers are usually preferred over references.
+
+5. What is wrong about reference? (Dap an C, )
+A. To get a pointer to the object denoted by a reference rr, use like &rr.
+B. Reference could be see as a const pointer.
+C. You can reseat a reference to make it refer to a different object.
+D. Value of reference cannot be changed after initialation. It always refers to the object it was initialized to denote.

@@ -1,7 +1,15 @@
-﻿  Student.cpp
+﻿  main.cpp
+  Student.cpp
   Fresher.cpp
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(16): error C3867: 'Student::get_name': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(17): error C3867: 'Student::get_account': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(18): error C3867: 'Student::get_sql': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(19): error C3867: 'Student::get_cBasic': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(20): error C3867: 'Student::get_cpp': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(36): error C3867: 'Student::get_name': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(37): error C3867: 'Student::get_account': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(38): error C3867: 'Student::get_sql': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(39): error C3867: 'Student::get_cBasic': non-standard syntax; use '&' to create a pointer to member
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\fresher.cpp(40): error C3867: 'Student::get_cpp': non-standard syntax; use '&' to create a pointer to member
   Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
-  StudentsManage.vcxproj -> D:\FPTSoftware\cpp_language\StudentsManage\Debug\StudentsManage.exe
-  StudentsManage.vcxproj -> D:\FPTSoftware\cpp_language\StudentsManage\Debug\StudentsManage.pdb (Partial PDB)
+d:\fptsoftware\cpp_language\studentsmanage\studentsmanage\main.cpp(8): error C4716: 'selectMenu': must return a value

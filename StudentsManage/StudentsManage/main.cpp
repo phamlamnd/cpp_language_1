@@ -2,6 +2,10 @@
 #include "Fresher.h"
 #include "Student.h"
 
+char selectMenu()
+{
+
+}
 
 int main()
 {

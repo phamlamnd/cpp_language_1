@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\fptsoftware\cpp_language\testproject\testproject\main.cpp(9): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  TestProject.vcxproj -> D:\FPTSoftware\cpp_language\TestProject\Debug\TestProject.exe
+  TestProject.vcxproj -> D:\FPTSoftware\cpp_language\TestProject\Debug\TestProject.pdb (Partial PDB)
