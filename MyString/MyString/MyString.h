@@ -6,7 +6,7 @@ class MyString
 private:
 	char *str;
 public:
-	MyString::MyString():str(NULL){}				/*default contructor		*/
+	MyString():str(NULL){}							/*default contructor		*/
 	MyString(const char *buf);						/*parameter contructor		*/
 	MyString(const MyString &obj);					/*copy contructor			*/
 	~MyString();									/*destructor				*/
