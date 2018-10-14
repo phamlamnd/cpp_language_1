@@ -1,10 +1,9 @@
 #include <iostream>
-
+#include "Header.h"
 class Line
 {
 private:
 	double length;
-	static int with;
 	int  *ptr;
 public:
 	static double with;			//static member
@@ -70,9 +69,52 @@ void display(Line obj)
 	std::cout << obj.getLength();
 }
 
+class Box
+{
+private:
+	double with;
+	double length;
+	double high;
+public:
+	Box(){}
+	Box(double w, double l, double h) : with(w), length(l), high(h){}
+	double get_with() { return with; }
+	double get_length() { return length; }
+	double get_high() { return high; }
+};
+
+class A
+{
+public:
+	A() { std::cout << "A"; }
+};
+
+class B
+{
+private:
+	A m_a;
+public:
+	B() { std::cout << "B"; }
+};
+
+class Something
+{
+private:
+	static int s_value;
+	std::string m_value;
+public:
+	Something(const std::string &value = "") { m_value = value; }
+	std::string& get_value() { return m_value; }
+	const std::string& get_value() const { return m_value; }
+	~Something(){}
+};
+
+int Something::s_value = 0;
+
 int main()
 {
-
+	Something st;
+	st.get_value();
 	system("pause");
 	return 0;
 }

@@ -1,27 +1,21 @@
 #include "MyString.h"
 
-/*Default contructor*/
-MyString::MyString()
-{
-	str = NULL;
-}
-
 /*Parameter contructor*/
 MyString::MyString(const char *buf)
 {
 	if (buf != NULL)
 	{
-		int size = 0;
-		while (buf[size] != '\0')
+		int len = 0;
+		while (buf[len] != '\0')
 		{
-			size++;
+			len++;
 		}
-		this->str = new char[size + 1];
-		for (int i = 0; i < size; i++)
+		str = new char[len + 1];
+		for (int i = 0; i < len; i++)
 		{
-			this->str[i] = buf[i];
+			str[i] = buf[i];
 		}
-		this->str[size] = '\0';
+		str[len] = '\0';
 	}
 	else
 	{
@@ -34,23 +28,18 @@ MyString::MyString(const MyString &obj)
 {
 	if (obj.str != NULL)
 	{
-		int size = 0;
-		while (obj.str[size] != '\0')
+		int len = obj.leng();
+		str = new char[len + 1];
+		for (int i = 0; i < len; i++)
 		{
-			size++;
+			str[i] = obj.str[i];
 		}
-		this->str = new char[size + 1];
-		for (int i = 0; i < size; i++)
-		{
-			this->str[i] = obj.str[i];
-		}
-		this->str[size] = '\0';
+		str[len] = '\0';
 	}
 }
 /*Destructor*/
 MyString::~MyString()
 {
-	
 	if (str != NULL)
 	{
 		delete[] str;
@@ -58,13 +47,14 @@ MyString::~MyString()
 	}
 }
 
-
-char* MyString::get_str(void)
+/*get string*/
+const char* MyString::getStr(void) const
 {
 	return str;
 }
 
-void MyString::set_str(const char *buf)
+/*set string*/
+void MyString::setStr(const char *buf)
 {
 	if (str != NULL)
 	{
@@ -73,34 +63,41 @@ void MyString::set_str(const char *buf)
 	}
 	if (buf != NULL)
 	{
-		int size = 0;
-		while (buf[size] != '\0')
+		int len = 0;
+		while (buf[len] != '\0')
 		{
-			size++;
+			len++;
 		}
-		this->str = new char[size + 1];
-		for (int i = 0; i < size; i++)
+		str = new char[len + 1];
+		for (int i = 0; i < len; i++)
 		{
-			this->str[i] = buf[i];
+			str[i] = buf[i];
 		}
-		this->str[size] = '\0';
+		str[len] = '\0';
 	}
 }
 
-void MyString::input()
+/*input string*/
+void MyString::input(void)
 {
 	std::cout << "\nInput string: ";
 }
 
-void MyString::print()
+/*print string*/
+void MyString::output(void)
 {
 	if (str != NULL)
 	{
 		std::cout << str;
 	}
+	else
+	{
+		std::cout << "";
+	}
 }
 
-void MyString::delele()
+/*delete string*/
+void MyString::del(void)
 {
 	if (str != NULL)
 	{
@@ -109,9 +106,10 @@ void MyString::delele()
 	}
 }
 
-char* MyString::strcat(const char *buf)
+/*cat with C style string*/
+MyString& MyString::cat(const char *buf)
 {
-	int len1 = this->length();
+	int len1 = this->leng();
 	int len2 = 0;
 	if (buf != NULL)
 	{
@@ -135,19 +133,21 @@ char* MyString::strcat(const char *buf)
 	}
 	str[i] = '\0';
 	delete[] tmp;
-	return str;
+	return *this;
 }
 
-char* MyString::strcat(const MyString &obj)
+/*cat two mystring*/
+MyString& MyString::cat(const MyString &obj)
 {
-	return this->strcat(obj.str);
+	return this->cat(obj.str);
 }
 
-char* MyString::reverse()
+/*reveser string*/
+MyString& MyString::rev(void)
 {
 	if (str != NULL)
 	{
-		int len = this->length();
+		int len = this->leng();
 		for (int i = 0; i <= len / 2 - 1; i++)
 		{
 			char tmp = str[i];
@@ -155,10 +155,11 @@ char* MyString::reverse()
 			str[len - i - 1] = tmp;
 		}
 	}
-	return str;
+	return *this;
 }
 
-int MyString::length()
+/*get string length*/
+int MyString::leng(void) const
 {
 	if (str != NULL)
 	{
@@ -172,11 +173,12 @@ int MyString::length()
 	return 0;
 }
 
-int MyString::compare(const MyString &obj)
+/*compare two mystring*/
+int MyString::comp(const MyString &obj)
 {
 	MyString tmp(obj);
-	int len1 = this->length();
-	int len2 = tmp.length();
+	int len1 = this->leng();
+	int len2 = tmp.leng();
 	int min = len1 < len2 ? len1 : len2;
 	for (int i = 0; i < min; i++)
 	{
@@ -200,7 +202,8 @@ int MyString::compare(const MyString &obj)
 	return 0;
 }
 
-void MyString::operator= (const MyString &obj)
+/*overload operator=*/
+MyString& MyString::operator= (const MyString &obj)
 {
 	if (str != NULL)
 	{
@@ -209,11 +212,7 @@ void MyString::operator= (const MyString &obj)
 	}
 	if (obj.str != NULL)
 	{
-		int len = 0;
-		while (obj.str[len] != '\0')
-		{
-			len++;
-		}
+		int len = obj.leng();
 		str = new char[len + 1];
 		for (int i = 0; i < len; i++)
 		{
@@ -223,16 +222,19 @@ void MyString::operator= (const MyString &obj)
 	}
 	else
 	{
-		this->str = obj.str;
+		str = NULL;
 	}
-}
-
-MyString MyString::operator+ (const MyString &obj)
-{
-	this->strcat(obj);
 	return *this;
 }
 
+/*overload operator+*/
+MyString& MyString::operator+ (const MyString &obj)
+{
+	this->cat(obj);
+	return *this;
+}
+
+/*overload operator<<*/
 std::ostream& operator<<(std::ostream &out, const MyString &obj)
 {
 	if (obj.str != NULL)
