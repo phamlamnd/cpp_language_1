@@ -8,7 +8,7 @@ int main()
 	MyString string3 = string1 = string2;
 	string2[0] = '-';
 	std::cin >> string1;
-	std::cout << string2[20] << std::endl;
+	std::cout << string2[2] << std::endl;
 	string1 += "Hello";
 	std::cout << string1 << std::endl;
 	std::cout << string1.leng() << std::endl;

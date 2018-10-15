@@ -1,9 +1,8 @@
 #include "MyString.h"
-#include <cassert>
 
 /*default contructor*/
 
-/*Parameter contructor*/
+/*parameter contructor*/
 MyString::MyString(const char *buf)
 {
 	if (buf != NULL)
@@ -26,7 +25,7 @@ MyString::MyString(const char *buf)
 	}
 }
 
-/*Copy contructor*/
+/*copy contructor*/
 MyString::MyString(const MyString &obj)
 {
 	if (obj.m_str != NULL)
@@ -45,7 +44,7 @@ MyString::MyString(const MyString &obj)
 	}
 }
 
-/*Destructor*/
+/*destructor*/
 MyString::~MyString()
 {
 	if (m_str != NULL)
@@ -212,7 +211,6 @@ int MyString::leng(void) const
 /*subscript operator[]*/
 char& MyString::operator[] (const int index)
 {
-	assert(index >= 0 || index <= (leng() - 1));
 	return m_str[index];
 }
 
@@ -225,17 +223,16 @@ MyString::operator char*()
 /*compare two mystring*/
 int MyString::comp(const MyString &obj) const
 {
-	MyString tmp(obj);
 	int len1 = this->leng();
-	int len2 = tmp.leng();
+	int len2 = obj.leng();
 	int min = len1 < len2 ? len1 : len2;
 	for (int i = 0; i < min; i++)
 	{
-		if (this->m_str[i] > tmp.m_str[i])
+		if (this->m_str[i] > obj.m_str[i])
 		{
 			return -1;
 		}
-		if (this->m_str[i] < tmp.m_str[i])
+		if (this->m_str[i] < obj.m_str[i])
 		{
 			return 1;
 		}
@@ -275,6 +272,7 @@ MyString& MyString::operator= (const MyString &obj)
 	}
 	return *this;
 }
+
 /*overload operator==*/
 bool operator== (const MyString &obj1, const MyString &obj2)
 {
@@ -305,6 +303,7 @@ bool operator< (const MyString &obj1, const MyString &obj2)
 	return (obj1.comp(obj2) == -1);
 }
 
+/*overload operator<=*/
 bool operator<= (const MyString &obj1, const MyString &obj2)
 {
 	return (obj1 == obj2) || (obj1 < obj2);
@@ -343,7 +342,7 @@ MyString& MyString::operator+= (const char* buf)
 }
 
 /*overload operator<<*/
-std::ostream& operator<<(std::ostream &out, const MyString &obj)
+std::ostream& operator<< (std::ostream &out, const MyString &obj)
 {
 	if (obj.m_str != NULL)
 	{
