@@ -1,0 +1,4 @@
+﻿  Polymorphism.cpp
+d:\fptsoftware\cpp_language\polymorphism\polymorphism\polymorphism.cpp(46): warning C4930: 'Employee E(void)': prototyped function not called (was a variable definition intended?)
+  Polymorphism.vcxproj -> D:\FPTSoftware\cpp_language\Polymorphism\Debug\Polymorphism.exe
+  Polymorphism.vcxproj -> D:\FPTSoftware\cpp_language\Polymorphism\Debug\Polymorphism.pdb (Partial PDB)

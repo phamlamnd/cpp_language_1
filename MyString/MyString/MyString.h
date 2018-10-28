@@ -13,7 +13,7 @@ public:
 	const char* getStr(void) const;												/*get string				*/
 	void setStr(const char *buf);												/*set string				*/
 	void input(void);															/*input string				*/
-	void output(void);															/*output string				*/
+	void output(void) const;													/*output string				*/
 	void del(void);																/*delete string				*/
 	MyString& cat(const char *buf);												/*cat with C style string	*/
 	MyString& cat(const MyString &obj);											/*cat two mystring			*/

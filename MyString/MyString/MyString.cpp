@@ -89,7 +89,7 @@ void MyString::input(void)
 {
 	int len = 0;
 	char ch = 0;
-	this->del(); /*m_str = NULL*/
+	this->del(); /*delete m_str*/
 	char *buf = NULL;
 	while ((ch = std::cin.get()) == '\n')
 	{
@@ -110,13 +110,13 @@ void MyString::input(void)
 		buf[len] = ch;
 		buf[len + 1] = '\0';
 		len++;
-		this->del(); /*m_str = NULL*/
-		m_str = buf;
+		this->del(); /*delete m_str*/
+		m_str = buf; /*m_str = buf*/
 	}
 }
 
 /*print string*/
-void MyString::output(void)
+void MyString::output(void) const
 {
 	if (m_str != NULL)
 	{
@@ -341,23 +341,16 @@ MyString& MyString::operator+= (const char* buf)
 	return *this;
 }
 
-/*overload operator<<*/
-std::ostream& operator<< (std::ostream &out, const MyString &obj)
-{
-	if (obj.m_str != NULL)
-	{
-		out << obj.m_str;
-	}
-	else
-	{
-		out << "";
-	}
-	return out;
-}
-
 /*overload operator>>*/
 std::istream& operator>> (std::istream &in, MyString &obj)
 {
 	obj.input();
 	return in;
+}
+
+/*overload operator<<*/
+std::ostream& operator<< (std::ostream &out, const MyString &obj)
+{
+	obj.output();
+	return out;
 }

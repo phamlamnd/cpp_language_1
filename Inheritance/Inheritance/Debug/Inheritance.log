@@ -1,0 +1,4 @@
+﻿  Inheritance.cpp
+d:\fptsoftware\cpp_language\inheritance\inheritance\inheritance.cpp(109): warning C4717: 'Derived::identify': recursive on all control paths, function will cause runtime stack overflow
+  Inheritance.vcxproj -> D:\FPTSoftware\cpp_language\Inheritance\Debug\Inheritance.exe
+  Inheritance.vcxproj -> D:\FPTSoftware\cpp_language\Inheritance\Debug\Inheritance.pdb (Partial PDB)

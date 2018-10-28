@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\fptsoftware\cpp_language\mocproject\mocproject\main.cpp(164): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  MOCProject.vcxproj -> D:\FPTSoftware\cpp_language\MOCProject\Debug\MOCProject.exe
+  MOCProject.vcxproj -> D:\FPTSoftware\cpp_language\MOCProject\Debug\MOCProject.pdb (Partial PDB)
