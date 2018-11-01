@@ -1,0 +1,1 @@
+/*Tempalte can not define in other file*/

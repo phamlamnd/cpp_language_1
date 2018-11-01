@@ -1,0 +1,13 @@
+﻿  TemplateClass.cpp
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(56): error C2059: syntax error: '<'
+  d:\fptsoftware\cpp_language\template\template\templateclass.cpp(57): note: see reference to class template instantiation 'Node<T>' being compiled
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(56): error C2238: unexpected token(s) preceding ';'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(71): error C2989: 'LinkedList': class template has already been declared as a non-class template
+  d:\fptsoftware\cpp_language\template\template\templateclass.cpp(56): note: see declaration of 'LinkedList'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(59): error C3857: 'LinkedList': multiple template parameter lists are not allowed
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(74): error C2988: unrecognizable template declaration/definition
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(74): error C2143: syntax error: missing ';' before '<'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(74): error C2182: 'LinkedList': illegal use of type 'void'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(74): error C2059: syntax error: '<'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(91): error C2143: syntax error: missing ';' before '{'
+d:\fptsoftware\cpp_language\template\template\templateclass.cpp(91): error C2447: '{': missing function header (old-style formal list?)

@@ -24,14 +24,14 @@ public:
 	~Cents(){}
 };
 
-int main()
-{
-	std::cout << max(2, 3) << std::endl;
-	std::cout << max(1.2, 3.4) << std::endl;
-	Cents c1(2);
-	Cents c2(3);
-	std::cout << max(c1, c2);
-
-	system("pause");
-	return 0;
-}
+//int main()
+//{
+//	std::cout << max(2, 3) << std::endl;
+//	std::cout << max(1.2, 3.4) << std::endl;
+//	Cents c1(2);
+//	Cents c2(3);
+//	std::cout << max(c1, c2);
+//
+//	system("pause");
+//	return 0;
+//}

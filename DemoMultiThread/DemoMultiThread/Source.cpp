@@ -1,5 +1,6 @@
 #include <iostream>
 #include <thread>
+#include <vector>
 
 void threadFunc()
 {
@@ -8,6 +9,8 @@ void threadFunc()
 
 int main()
 {
-	while(1)
-	std::thread funcTest1(threadFunc);
+	//while(1)
+	//std::thread funcTest1(threadFunc);
+	system("pause");
+	return 0;
 }

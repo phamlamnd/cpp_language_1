@@ -1,5 +1,5 @@
 #include <iostream>
-#include <pthread.h>
+#include <thread>
 #include <unistd.h>
 
 //prag: ex1 - begin

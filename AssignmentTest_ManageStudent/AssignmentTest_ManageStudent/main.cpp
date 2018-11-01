@@ -1,5 +1,5 @@
 #include "ClassManager.h"
-
+//29/10/2018
 int main()
 {
 	ClassManager classManager;
@@ -15,12 +15,12 @@ int main()
 		{
 			case '1':
 				system("cls");
-				std::cout << "\nReading data from file ..." << std::endl;
+				std::cout << "Reading data from file ..." << std::endl;
 				classManager.loadDataFromFile(fileName);
 				break;
 			case '2':
 				system("cls");
-				std::cout << "\nInput data from console ..." << std::endl;
+				std::cout << "Input data from console ..." << std::endl;
 				classManager.inputDataFromConsole();
 				break;
 			default:
@@ -43,6 +43,8 @@ int main()
 		std::cout << "4.Add" << std::endl;
 		std::cout << "5.Display" << std::endl;
 		std::cout << "6.Update file" << std::endl;
+		std::cout << "7.Edit info" << std::endl;
+		std::cout << "8.Write to file" << std::endl;
 		std::cout << "0.Exit" << std::endl;
 		std::cout << "Choose>> ";
 		std::cin >> menuKey;
@@ -94,7 +96,6 @@ int main()
 			system("cls");
 			std::cout << "1.Sort by id" << std::endl;
 			std::cout << "2.Sort by name" << std::endl;
-
 			SORT_BY sortKey;
 			std::cout << "Choose>> ";
 			char key;
@@ -104,7 +105,14 @@ int main()
 				case '1': sortKey = SORT_ID; break;
 				case '2': sortKey = SORT_NAME; break;
 			}
-			classManager.sort(sortKey);
+			std::vector<Student> allStudent = classManager.sort(sortKey);
+
+			std::vector<Student>::iterator studentIter = allStudent.begin();
+			for (; studentIter != allStudent.end(); ++studentIter)
+			{
+				(*studentIter).printStudentInfo();
+				std::cout << std::endl;
+			}
 			Student::countStudent = 0;
 		}
 		break;
@@ -115,6 +123,8 @@ int main()
 			system("cls");
 			std::cout << "1.Delete one student" << std::endl;
 			std::cout << "2.Delete one class" << std::endl;
+			std::cout << "3.Delete rank" << std::endl;
+			std::cout << "4.Delete ALL(Carefully)" << std::endl;
 			std::cout << "Choose>> ";
 			char key;
 			std::cin >> key;
@@ -122,6 +132,8 @@ int main()
 			{
 			case '1': classManager.deleteStudent(); break;
 			case '2': classManager.deleteClass(); break;
+			case '3': classManager.deleteRank(); break;
+			case '4': classManager.clearData(); break;
 			default: break;
 			}
 		}
@@ -132,7 +144,7 @@ int main()
 		{
 			system("cls");
 			std::cout << "1.Add new student" << std::endl;
-			std::cout << "2.Add new class ID" << std::endl;
+			std::cout << "2.Add new class" << std::endl;
 			std::cout << "Choose>> ";
 			char key;
 			std::cin >> key;
@@ -157,7 +169,7 @@ int main()
 		case '6':
 		{
 			system("cls");
-			std::cout << "Update File" << std::endl;
+			std::cout << "Update file" << std::endl;
 			std::cout << "1.NO" << std::endl;
 			std::cout << "2.YES" << std::endl;
 			std::cout << "Choose>> ";
@@ -172,12 +184,46 @@ int main()
 					break;
 				case '2':
 					system("cls");
-					classManager.writeDataToFile(fileName);
+					classManager.updateFile(fileName);
 					std::cout << "Updating file..." << std::endl;
 					break;
 				default:
 					break;
 			}
+		}
+		break;
+
+		//Edit info
+		case '7':
+		{
+			system("cls");
+			classManager.editStudentInfo();
+		}
+		break;
+
+		case '8':
+		{
+			system("cls");
+			std::cout << "1.Write all student to file" << std::endl;
+			std::cout << "2.Write one class to file" << std::endl;
+			std::cout << "Choose>> ";
+			char key;
+			std::cin >> key;
+
+			switch (key)
+			{
+			case '1':
+				system("cls");
+				classManager.writeAllStudentToFile("OUTPUT.csv");
+				break;
+			case '2':
+				system("cls");
+				classManager.writeOneClassToFile();
+				break;
+			default:
+				break;
+			}
+			
 		}
 		break;
 

@@ -19,6 +19,19 @@ Student::~Student()
 {
 }
 
+std::string Student::getLastName() const
+{
+	std::string lastName;
+	int leng = m_Name.length();
+	int pos = leng;
+	while (m_Name[pos] != ' ' && pos > 0)
+	{
+		--pos;
+	}
+	lastName = m_Name.substr(pos);
+	return lastName;
+}
+
 void Student::printStudentInfo()
 {
 	std::cout << std::setw(3) << std::left << ++countStudent << "  " << m_ID << "  " << std::setw(20) << std::left << m_Name << "  " << m_ClassID << "  " << m_Rank;

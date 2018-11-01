@@ -20,9 +20,12 @@ public:
 	~Student();
 	std::string getID() const { return m_ID; }
 	std::string getName() const { return m_Name; }
+	std::string getLastName() const;
 	std::string getClassID() const { return m_ClassID; }
 	std::string getRank() const { return m_Rank; }
 	void setClassID(std::string classId) { m_ClassID = classId; }
+	void setName(std::string name) { m_Name = name; }
+	void setRank(std::string rank) { m_Rank = rank; }
 	void printStudentInfo();
 	void input();
 	friend std::ofstream& operator<< (std::ofstream& out, const Student& student); //write to file

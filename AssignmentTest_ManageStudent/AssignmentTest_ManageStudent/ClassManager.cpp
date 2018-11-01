@@ -1,6 +1,8 @@
 #include "ClassManager.h"
 #include <fstream>
 #include <algorithm>
+#include <Windows.h>
+
 ClassManager::ClassManager()
 {
 }
@@ -143,7 +145,17 @@ void ClassManager::search(const std::string &searchData, const SEARCH_BY &search
 	}
 }
 
-void ClassManager::sort(const SORT_BY &sortKey)
+static bool compareID(Student& obj1, Student& obj2)
+{
+	return obj1.getID() < obj2.getID();
+}
+
+static bool compareName(Student& obj1, Student& obj2)
+{
+	return obj1.getLastName() < obj2.getLastName();
+}
+
+std::vector<Student> ClassManager::sort(const SORT_BY &sortKey)
 {
 	std::vector<Student> allStudent;
 	std::vector<Student>::iterator studentIter;
@@ -162,35 +174,40 @@ void ClassManager::sort(const SORT_BY &sortKey)
 	bool(*funPointer)(Student&, Student&) = NULL; //function pointer
 	switch (sortKey)
 	{
-	case SORT_ID: funPointer = [](Student& obj1, Student& obj2) {return obj1.getID() < obj2.getID(); }; break;
-	case SORT_NAME: funPointer = [](Student& obj1, Student& obj2) {return obj1.getName() < obj2.getName(); }; break;
-	default: break;
+		case SORT_ID: funPointer = compareID; break;
+		case SORT_NAME: funPointer = compareName; break;
+		default: break;
 	}
 	std::sort(allStudent.begin(), allStudent.end(), funPointer); //function pointer pass to sort
 
-	studentIter = allStudent.begin();
-	for (; studentIter != allStudent.end(); ++studentIter)
-	{
-		(*studentIter).printStudentInfo();
-		std::cout << std::endl;
-	}
+	return allStudent;
 }
 
 bool ClassManager::deleteClass()
 {
+	system("cls");
 	std::cout << "Enter class id for delete: ";
 	std::string classId;
 	std::cin >> classId;
-
+	system("cls");
 	std::vector<ClassStudent>::iterator classIter;
 	classIter = m_ClassList.begin();
 	for (; classIter != m_ClassList.end(); ++classIter)
 	{
 		if (classId == (*classIter).getClassID())
 		{
+			std::vector<Student> studentList = (*classIter).getStudentList();
+			std::vector<Student>::iterator studentIter;
+			studentIter = studentList.begin();
+			for (; studentIter != studentList.end(); studentIter++)
+			{
+				(*studentIter).printStudentInfo();
+				Sleep(500);
+				std::cout << " -->student delete success..." << std::endl;
+			}
 			(*classIter).getStudentList().clear(); //clear all student in class
 			m_ClassList.erase(classIter); //clear class
-			std::cout << classId << "-->class id delete success..." << std::endl;
+			std::cout << classId << "-->class delete success..." << std::endl;
 			return true; //delete success
 		}
 	}
@@ -200,10 +217,11 @@ bool ClassManager::deleteClass()
 
 bool ClassManager::deleteStudent()
 {
+	system("cls");
 	std::cout << "Enter student id for delete: ";
 	std::string id;
 	std::cin >> id;
-
+	system("cls");
 	std::vector<ClassStudent>::iterator classIter;
 	classIter = m_ClassList.begin();
 	for (; classIter != m_ClassList.end(); ++classIter)
@@ -215,8 +233,9 @@ bool ClassManager::deleteStudent()
 		{
 			if (id == (*studentIter).getID())
 			{
+				(*studentIter).printStudentInfo();
+				std::cout << " -->student delete success..." << std::endl;
 				studentList.erase(studentIter); //delete
-				std::cout << id << "-->student delete success..." << std::endl;
 				return true; //delete success
 			}
 		}
@@ -225,31 +244,39 @@ bool ClassManager::deleteStudent()
 	return false; //delete fail
 }
 
-void ClassManager::writeDataToFile(const std::string fileName)
+void ClassManager::deleteRank()
 {
-	std::ofstream fileOut(fileName);
+	std::cout << "Enter rank for delete: ";
+	std::string rank;
+	std::cin >> rank;
+
+	bool check = false;
 
 	std::vector<ClassStudent>::iterator classIter;
 	classIter = m_ClassList.begin();
 	for (; classIter != m_ClassList.end(); ++classIter)
 	{
-		if (classIter != m_ClassList.begin())
-		{
-			fileOut << "\n";
-		}
 		std::vector<Student> &studentList = (*classIter).getStudentList();
 		std::vector<Student>::iterator studentIter;
-		studentIter = studentList.begin();
-		for (; studentIter != studentList.end(); ++studentIter)
+		
+		for (studentIter = studentList.begin(); studentIter != studentList.end();)
 		{
-			if (studentIter != studentList.begin())
+			if (rank == (*studentIter).getRank())
 			{
-				fileOut << "\n";
+				check = true;
+				(*studentIter).printStudentInfo();
+				Sleep(500);
+				std::cout << " -->student delete success..." << std::endl;
+				studentIter = studentList.erase(studentIter); //delete
 			}
-			fileOut << (*studentIter);
+			else
+			{
+				++studentIter;
+			}
 		}
 	}
-	fileOut.close();
+
+	if (check == false) std::cout << " Rank not found" << std::endl;
 }
 
 void ClassManager::displayClass()
@@ -312,7 +339,7 @@ void ClassManager::addNewStudent()
 		std::cout << i << ".Add student for class " << (*classIter).getClassID() << std::endl;
 	}
 
-	std::cout << "Key: ";
+	std::cout << "Choose>> ";
 	char key;
 	std::cin >> key;
 	std::cin.ignore();
@@ -332,8 +359,6 @@ void ClassManager::addNewStudent()
 				std::cout << "Class " << (*classIter).getClassID() << " updating..." << std::endl;
 				(*classIter).getStudentList().push_back(student);
 				(*classIter).printAllStudentInfo();
-				//writeDataToFile(fileName); //update file
-				//std::cout << "File updating..." << std::endl;
 			}
 			else //if student already exist
 			{
@@ -392,11 +417,163 @@ void ClassManager::addNewClass()
 
 void ClassManager::clearData()
 {
+	system("cls");
+	std::cout << "Delete all data" << std::endl;
+	std::cout << "1.NO" << std::endl;
+	std::cout << "2.YES" << std::endl;
+	std::cout << "Choose>> ";
+	char key;
+	std::cin >> key;
+	system("cls");
+	switch (key)
+	{
+	case '1':
+		std::cout << "Data not delete..." << std::endl;
+		break;
+	case '2':
+		std::vector<ClassStudent>::iterator classIter;
+		classIter = m_ClassList.begin();
+		for (; classIter != m_ClassList.end(); ++classIter)
+		{
+			std::vector<Student> &studentList = (*classIter).getStudentList();
+			std::vector<Student>::iterator studentIter;
+			studentIter = studentList.begin();
+			for (; studentIter != studentList.end(); studentIter++)
+			{
+				(*studentIter).printStudentInfo();
+				Sleep(500);
+				std::cout << " -->student delete success..." << std::endl;
+			}
+		}
+
+		classIter = m_ClassList.begin();
+		for (; classIter != m_ClassList.end(); ++classIter)
+		{
+			(*classIter).getStudentList().clear();
+		}
+		m_ClassList.clear();
+		break;
+	}
+}
+
+bool ClassManager::editStudentInfo()
+{
+	std::cout << "Enter student id for edit: ";
+	std::string id;
+	std::cin >> id;
 	std::vector<ClassStudent>::iterator classIter;
 	classIter = m_ClassList.begin();
 	for (; classIter != m_ClassList.end(); ++classIter)
 	{
-		(*classIter).getStudentList().clear();
+		std::vector<Student> &studentList = (*classIter).getStudentList();
+		std::vector<Student>::iterator studentIter;
+		studentIter = studentList.begin();
+		for (; studentIter != studentList.end(); ++studentIter)
+		{
+			if (id == (*studentIter).getID())
+			{
+				std::string name, rank;
+				(*studentIter).printStudentInfo(); //In ra thong tin 
+				std::cout << std::endl;
+				std::cout << "Edit Name: ";
+				std::cin.ignore();
+				std::getline(std::cin, name);
+				std::cout << "Edit Rank: ";
+				std::getline(std::cin, rank);
+				(*studentIter).setName(name);
+				(*studentIter).setRank(rank);
+				std::cout << id << "-->student edit success..." << std::endl;
+				(*studentIter).printStudentInfo(); //In ra thong tin
+				std::cout << std::endl;
+				return true; //edit success
+			}
+		}
 	}
-	m_ClassList.clear();
+	std::cout << " ...student id not found" << std::endl;
+	return false; //edit fail
+}
+
+void ClassManager::updateFile(const std::string fileName)
+{
+	std::ofstream fileOut(fileName);
+
+	std::vector<ClassStudent>::iterator classIter;
+	classIter = m_ClassList.begin();
+	for (; classIter != m_ClassList.end(); ++classIter)
+	{
+		if (classIter != m_ClassList.begin())
+		{
+			fileOut << "\n";
+		}
+		std::vector<Student> &studentList = (*classIter).getStudentList();
+		std::vector<Student>::iterator studentIter;
+		studentIter = studentList.begin();
+		for (; studentIter != studentList.end(); ++studentIter)
+		{
+			if (studentIter != studentList.begin())
+			{
+				fileOut << "\n";
+			}
+			fileOut << (*studentIter);
+		}
+	}
+	fileOut.close();
+}
+
+void ClassManager::writeOneClassToFile()
+{
+	system("cls");
+	std::vector<ClassStudent>::iterator classIter;
+	classIter = m_ClassList.begin();
+	for (char i = '1'; classIter != m_ClassList.end(); ++i, ++classIter)
+	{
+		std::cout << i << ".Write class " << (*classIter).getClassID() << " to file" << std::endl;
+	}
+
+	std::cout << "Choose>> ";
+	char key;
+	std::cin >> key;
+	//std::cin.ignore();
+
+	classIter = m_ClassList.begin();
+	for (char i = '1'; classIter != m_ClassList.end(); ++i, ++classIter)
+	{
+		std::cout << "check ";
+		if (i == key)
+		{
+			std::ofstream fileOut((*classIter).getClassID() + ".csv");
+			std::vector<Student>::iterator studentIter = (*classIter).getStudentList().begin();
+			for (; studentIter != (*classIter).getStudentList().end(); ++studentIter)
+			{
+				if (studentIter != (*classIter).getStudentList().begin())
+				{
+					fileOut << "\n";
+				}
+				fileOut << (*studentIter);
+			}
+			system("cls");
+			std::cout << "Class " << (*classIter).getClassID() << " write to file success..." << std::endl;
+			fileOut.close();
+			return;
+		}
+	}
+}
+
+void ClassManager::writeAllStudentToFile(const std::string fileName)
+{
+	std::ofstream fileOut(fileName);
+
+	std::vector<Student> allStudent = this->sort(SORT_NAME);
+	std::vector<Student>::iterator studentIter = allStudent.begin();
+	for (; studentIter != allStudent.end(); ++studentIter)
+	{
+		if (studentIter != allStudent.begin())
+		{
+			fileOut << "\n";
+		}
+		fileOut << (*studentIter);
+	}
+	system("cls");
+	std::cout << "All student write to file '" << fileName << "' success..." << std::endl;
+	fileOut.close();
 }
