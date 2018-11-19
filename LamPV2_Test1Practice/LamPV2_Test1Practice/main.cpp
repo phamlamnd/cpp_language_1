@@ -260,19 +260,16 @@ int main()
 			std::cout << "1.Sort ID Increase (Show Info)" << std::endl;
 			std::cout << "2.Sort ID Descrease (Show Dailywork)" << std::endl;
 			std::cout << "Choose>> ";
-			SORT_BY sortKey;
 			char key;
 			std::cin >> key;
 			switch (key)
 			{
 				case '1': 
-					sortKey = SORT_ID_INC;
-					sort(employeeList, sortKey);
+					sort(employeeList, SORT_ID_INC);
 					displayInfo(employeeList);
 					break;
 				case '2': 
-					sortKey = SORT_ID_DEC; 
-					sort(employeeList, sortKey);
+					sort(employeeList, SORT_ID_DEC);
 					displayDailyWork(employeeList);
 					break;
 			}

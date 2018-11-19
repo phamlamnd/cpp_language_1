@@ -37,7 +37,7 @@ void Calculator(unsigned int MathType, float num1, float num2)
 
 int main()
 {
-	Calculator(CONG|TRU|NHAN, 1, 2);
+	Calculator(CONG|TRU|NHAN|CHIA, 1, 2);
 	Calculator(MAX|MIN, 1, 2);
 	system("pause");
 	return 0;

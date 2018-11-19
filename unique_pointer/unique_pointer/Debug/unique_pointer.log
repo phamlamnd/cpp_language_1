@@ -1,3 +1,57 @@
 ﻿  unique_pointer.cpp
-  unique_pointer.vcxproj -> D:\FPTSoftware\cpp_language\unique_pointer\Debug\unique_pointer.exe
-  unique_pointer.vcxproj -> D:\FPTSoftware\cpp_language\unique_pointer\Debug\unique_pointer.pdb (Partial PDB)
+d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(75): error C2248: 'Node<T>::m_data': cannot access private member declared in class 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(28): note: see declaration of 'Node<T>::m_data'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(44): note: see declaration of 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(73): note: while compiling class template member function 'void LinkedList<Employee *>::push_back(T)'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\unique_pointer.cpp(82): note: see reference to function template instantiation 'void LinkedList<Employee *>::push_back(T)' being compiled
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\unique_pointer.cpp(80): note: see reference to class template instantiation 'LinkedList<Employee *>' being compiled
+d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(76): error C2248: 'Node<T>::m_next': cannot access private member declared in class 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(29): note: see declaration of 'Node<T>::m_next'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(44): note: see declaration of 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]
+d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(83): error C2248: 'Node<T>::m_next': cannot access private member declared in class 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(29): note: see declaration of 'Node<T>::m_next'
+          with
+          [
+              T=Employee *
+          ]
+  d:\fptsoftware\cpp_language\unique_pointer\unique_pointer\linkedlist.h(44): note: see declaration of 'Node<T>'
+          with
+          [
+              T=Employee *
+          ]

@@ -1,8 +1,8 @@
-1230,Hoang Anh,BU68,MANAGER,Customer 4
+1230,Hoang Anh,BU68,TESTER,Tester 2
 1235,Pham Van Lam,BU69,TESTER,Test 4
 1236,Vu Viet Anh,BU68,TESTER,Test 3
 1237,Nguyen Thi Ha,BU67,DEVELOPER,Project 1
 1238,Vu Van Bang,BU65,TESTER,Test 2
 1239,Nguyen Van Hieu,BU68,MANAGER,Customer 1
-1240,Nguyen Van A,BU67,DEVELOPER,Project 3
-1280,Nguyen Van Tiep,BU68,TESTER,Test 3
+1280,Nguyen Van A,BU68,DEVELOPER,Project 2
+1299,Hoang Nam Tien,BU60,DEVELOPER,Project 3

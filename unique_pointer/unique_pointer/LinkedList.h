@@ -13,13 +13,15 @@ private:
 	Node *m_next;
 public:
 	Node() {}												//constructor
-	~Node() {}												//distructor
+	~Node() { std::cout << "~Node()" << std::endl; }		//distructor
 	Node(const Node& rhs) = delete;							//prevent copy
 	Node&operator=(const Node& rhs) = delete;				//prevent assignment
-	T& getData() { return m_data; }							//get data
+	const T& getData() { return m_data; }					//get data
 	Node* getNext() { return m_next; }						//get next pointer
 	friend class LinkedList<T>;								//friend class
 };
+
+
 
 template <class T>
 class LinkedList
@@ -49,6 +51,7 @@ LinkedList<T>::~LinkedList()
 		iter = tmp;
 	}
 	m_head = NULL;
+	std::cout << "~LinkedList()" << std::endl;
 }
 
 template <class T>

@@ -22,6 +22,4 @@ public:
 	virtual void DisplayDailyWork() override;
 	virtual ~Developer() { }
 };
-
-
 #endif /*_DEVELOPER_H_*/

@@ -12,9 +12,8 @@ private:
 	T m_data;
 	Node *m_next;
 public:
-	Node(T data, Node *next = NULL):						//constructor
-		m_data(data), m_next(next) { }
-	~Node() { std::cout << "~Node()" << std::endl; }		//distructor
+	Node(T data) :m_data(data), m_next(NULL) { }			//constructor
+	~Node() { }												//distructor
 	Node(const Node& rhs) = delete;							//prevent copy
 	Node&operator=(const Node& rhs) = delete;				//prevent assignment
 	T& getData() { return m_data; }							//get data
@@ -36,21 +35,20 @@ public:
 	Node<T>* end() { return NULL; }							//end()
 	Node<T>* erase(Node<T>* node);							//erase()
 	void push_back(T data);									//push_back()
-	void sort(bool(*funPointer)(T &obj1, T &obj2));			//sort()
+	void sort(bool(*funPointer)(T&,T&));					//sort()
 };
 
 template <class T>
 LinkedList<T>::~LinkedList()
 {
-	Node<T>* iter = this->begin();
-	while(iter != this->end())
+	Node<T>* cur = this->begin();
+	while(cur != this->end())
 	{
-		Node<T>* tmp = iter->getNext(); //save next node before delete
-		delete iter;
-		iter = tmp;
+		Node<T>* nex = cur->getNext(); //save next node before delete
+		delete cur;
+		cur = nex;
 	}
 	m_head = NULL;
-	std::cout << "~LinkedList()" << std::endl;
 }
 
 template <class T>
@@ -69,7 +67,7 @@ void LinkedList<T>::push_back(T data)
 }
 
 template <class T>
-void LinkedList<T>::sort(bool(*funPointer)(T &obj1, T &obj2))
+void LinkedList<T>::sort(bool(*funPointer)(T&,T&))
 {
 	if (m_head == NULL) //if no element
 	{
@@ -92,11 +90,11 @@ void LinkedList<T>::sort(bool(*funPointer)(T &obj1, T &obj2))
 }
 
 template <class T>
-Node<T>* LinkedList<T>::erase(Node<T>* deleteNode)
+Node<T>* LinkedList<T>::erase(Node<T>* node)
 {
 	Node<T>* cur = this->begin(); //node hien tai
 	Node<T>* pre = this->begin(); //node ke tiep
-	if (cur == deleteNode)		  //Neu node dau tien xoa
+	if (cur == node)			  //Neu node dau tien xoa
 	{
 		m_head = m_head->getNext();
 		delete cur;
@@ -104,7 +102,7 @@ Node<T>* LinkedList<T>::erase(Node<T>* deleteNode)
 	}
 	for(; cur != this->end(); cur = cur->getNext())
 	{
-		if (cur == deleteNode)
+		if (cur == node)
 		{
 			Node<T>* nex = cur->m_next;    //Luu lai node ke tiep  pre->cur->nex
 			delete cur;					   //Xoa node hien tai

@@ -1,8 +1,16 @@
-#include "LinkedList.h"
 #include <iostream>
-#include "memory"
+#include "LinkedList.h"
+#include <memory>
+namespace myl
+{
+	template <class T>
+	class unique_ptr;
+	template <class T>
+	unique_ptr<T> make_unique(T &obj);
+}
+
 template <class T>
-class unique_ptr
+class myl::unique_ptr
 {
 private:
 	T *m_ptr;
@@ -34,6 +42,12 @@ public:
 	T* operator->() { return m_ptr; }
 };
 
+template<class T>
+myl::unique_ptr<T> myl::make_unique(T &obj)
+{
+
+	return unique_ptr<T>(new T(obj));
+}
 
 class Employee
 {
@@ -62,20 +76,11 @@ public:
 
 int main()
 {
-	LinkedList<Employee*> employeeList;
-
-	Employee* employee1 = new Developer;
-	employeeList.push_back(employee1);
-
-	Employee* employee2 = new Manager;
-	employeeList.push_back(employee2);
-
-	Node<Employee*> *employeeIter = employeeList.begin();
-	for (; employeeIter != employeeList.end(); employeeIter = employeeIter->getNext())
 	{
-		employeeIter->getData()->show();
+		LinkedList<Employee*> employeeList;
+		Employee *employee = new Developer;
+		employeeList.push_back(employee);
 	}
-
 	system("pause");
 	return 0;
 }
